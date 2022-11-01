@@ -6,6 +6,8 @@
 # License: BSD 2-Clause "Simplified" License: https://github.com/hasherezade/bearparser/blob/master/LICENSE
 # Notes: bearcommander
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
   
@@ -14,3 +16,10 @@ bearparser:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+bearparser-not-in-jammy:
+  test.nop
+
+{% endif %}

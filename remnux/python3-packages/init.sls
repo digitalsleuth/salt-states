@@ -2,6 +2,7 @@ include:
   - remnux.python3-packages.pip
   - remnux.python3-packages.androguard
   - remnux.python3-packages.docker-compose
+  - remnux.python3-packages.dnspython3
   - remnux.python3-packages.ioc-parser
   - remnux.python3-packages.ipwhois
   - remnux.python3-packages.jsbeautifier
@@ -55,6 +56,7 @@ remnux-python3-packages:
       - sls: remnux.python3-packages.pip
       - sls: remnux.python3-packages.androguard
       - sls: remnux.python3-packages.docker-compose
+      - sls: remnux.python3-packages.dnspython3
       - sls: remnux.python3-packages.ioc-parser
       - sls: remnux.python3-packages.ipwhois
       - sls: remnux.python3-packages.jsbeautifier

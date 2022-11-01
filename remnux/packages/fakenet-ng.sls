@@ -14,11 +14,7 @@ include:
   - remnux.packages.libnetfilter-queue-dev
   - remnux.packages.libnfnetlink-dev
   - remnux.packages.git
-{% if grains['oscodename'] == "bionic" %}
-  - remnux.packages.python-dev
-{% elif grains['oscodename'] == "focal" %}
   - remnux.packages.python2-dev
-{% endif %}
 
 pydivert:
   pip.installed:

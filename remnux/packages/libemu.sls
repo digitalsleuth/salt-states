@@ -6,6 +6,8 @@
 # License: Free, unknown license
 # Notes: 
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
   
@@ -22,3 +24,10 @@ remnux-packages-libemu-ldconfig:
     - name: ldconfig
     - watch:
       - pkg: libemu
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+libemu-not-in-jammy:
+  test.nop
+
+{% endif %}

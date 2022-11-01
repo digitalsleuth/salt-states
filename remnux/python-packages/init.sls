@@ -3,9 +3,12 @@ include:
   - remnux.python-packages.bottle
   - remnux.python-packages.cryptography
   - remnux.python-packages.distorm3
+  - remnux.python-packages.dnspython2
   - remnux.python-packages.fuzzywuzzy
   - remnux.python-packages.ndg-httpsclient
+  - remnux.python-packages.numpy
   - remnux.python-packages.olefile
+  - remnux.python-packages.pyasn1
   - remnux.python-packages.pydeep
   - remnux.python-packages.pygeoip
   - remnux.python-packages.pypdns
@@ -30,9 +33,12 @@ remnux-python-packages:
       - sls: remnux.python-packages.bottle
       - sls: remnux.python-packages.cryptography
       - sls: remnux.python-packages.distorm3
+      - sls: remnux.python-packages.dnspython2
       - sls: remnux.python-packages.fuzzywuzzy
       - sls: remnux.python-packages.ndg-httpsclient
+      - sls: remnux.python-packages.numpy
       - sls: remnux.python-packages.olefile
+      - sls: remnux.python-packages.pyasn1
       - sls: remnux.python-packages.pydeep
       - sls: remnux.python-packages.pygeoip
       - sls: remnux.python-packages.pypdns

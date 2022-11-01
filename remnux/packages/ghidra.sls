@@ -6,6 +6,8 @@
 # License: Apache License 2.0: https://github.com/NationalSecurityAgency/ghidra/blob/master/LICENSE
 # Notes: Close CodeBrowser before exiting Ghidra to prevent Ghidra from freezing when you reopen the tool (it's a Ghidra bug).
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
 
@@ -45,3 +47,10 @@ remnux-packages-ghidra-cleanup5:
     - name: /usr/local/ghidra_9.2_PUBLIC
     - require:
       - pkg: remnux-packages-ghidra
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+ghidra-not-in-jammy:
+  test.nop
+
+{% endif %}

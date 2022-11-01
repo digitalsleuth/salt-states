@@ -6,24 +6,12 @@
 # License: Free, custom license: https://github.com/decalage2/ViperMonkey#license
 # Notes: vmonkey
 
-{%- if grains['oscodename'] == "focal" %}
-
 include:
   - remnux.packages.python2-pip
   - remnux.packages.git
   - remnux.packages.virtualenv
   - remnux.packages.python3-pip
   - remnux.packages.python2-dev
-
-{%- else %}
-
-include:
-  - remnux.packages.python2-pip
-  - remnux.packages.git
-  - remnux.packages.virtualenv
-  - remnux.packages.python3-pip
-
-{%- endif %}
 
 remnux-python-packages-vipermonkey-virtualenv:
   virtualenv.managed:
@@ -37,8 +25,6 @@ remnux-python-packages-vipermonkey-virtualenv:
     - require:
       - sls: remnux.packages.python2-pip
       - sls: remnux.packages.virtualenv
-
-{%- if grains['oscodename'] == "focal" %}
 
 remnux-python-packages-vipermonkey-regex:
   pip.installed:
@@ -67,27 +53,6 @@ remnux-python-packages-vipermonkey-install:
       - sls: remnux.packages.python2-dev
       - pip: remnux-python-packages-vipermonkey-unidecode
       - virtualenv: remnux-python-packages-vipermonkey-virtualenv
-
-{%- else %}
-
-remnux-python-packages-vipermonkey-unidecode:
-  pip.installed:
-    - name: unidecode==1.2.0
-    - bin_env: /opt/vipermonkey/bin/python
-    - require:
-      - sls: remnux.packages.python2-pip
-
-remnux-python-packages-vipermonkey-install:
-  pip.installed:
-    - name: git+https://github.com/decalage2/ViperMonkey.git
-    - bin_env: /opt/vipermonkey/bin/python
-    - require:
-      - sls: remnux.packages.git
-      - sls: remnux.packages.python2-pip
-      - pip: remnux-python-packages-vipermonkey-unidecode
-      - virtualenv: remnux-python-packages-vipermonkey-virtualenv
-
-{%- endif %}
 
 remnux-python-packages-vipermonkey-symlink:
   file.symlink:

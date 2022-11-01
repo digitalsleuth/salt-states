@@ -6,6 +6,8 @@
 # License: GNU General Public License (GPL) v3: https://github.com/jesparza/peepdf/blob/master/COPYING
 # Notes: 
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.packages.python2-pip
   - remnux.packages.libemu
@@ -25,3 +27,10 @@ remnux-tools-peepdf-source:
       - sls: remnux.packages.libjpeg8-dev
       - sls: remnux.packages.zlib1g-dev
       - sls: remnux.packages.git
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+libemu-not-in-jammy-so-no-peepdf:
+  test.nop
+
+{% endif %}

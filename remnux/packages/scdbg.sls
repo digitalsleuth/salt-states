@@ -6,7 +6,12 @@
 # License: Free, unknown license
 # Notes: scdbg (GUI), scdbgc (console). Due to a compatibility issue, this tool is not available on an Ubuntu 20.04 SIFT Workstation system to which REMnux was added.
 
-{%- if salt['file.file_exists' ]('/etc/sift-version') and grains['oscodename'] == "focal" %}
+{% if grains['oscodename'] == 'jammy' %}
+
+scdbg-not-in-jammy:
+  test.nop
+
+{%- elif salt['file.file_exists' ]('/etc/sift-version') and grains['oscodename'] == "focal" %}
 
 remnux-packages-scdbg:
   test.nop

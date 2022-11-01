@@ -5,10 +5,12 @@
 # Author: cryptax
 # License: MIT License: https://github.com/cryptax/droidlysis/blob/master/LICENSE
 # Notes: droidlysis
-{%- if grains['oscodename'] == "bionic" %}
-  {%- set python3_version="python3.6" %}
-{%- elif grains['oscodename'] == "focal" %}
+{%- if grains['oscodename'] == "focal" %}
   {%- set python3_version="python3.8" %}
+{%- elif grains['oscodename'] == "jammy" %}
+  {%- set python3_version="python3.10" %}
+droidlysis-requirements-not-in-jammy:
+  test.nop
 {% endif %}
 
 include:

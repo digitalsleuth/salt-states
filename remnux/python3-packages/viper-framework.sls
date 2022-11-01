@@ -6,10 +6,10 @@
 # License: BSD 3-Clause License: https://github.com/viper-framework/viper/blob/master/LICENSE
 # Notes: Viper is temporarily excluded from the REMnux distro due to depdendency issues. Instead, use the remnux/viper Docker image: https://docs.remnux.org/run-tools-in-containers/remnux-containers#viper-binary-analysis-and-management-framework
 
-{%- if grains['oscodename'] == "bionic" %}
-  {%- set python3_version="python3.6" %}
-{%- elif grains['oscodename'] == "focal" %}
+{%- if grains['oscodename'] == "focal" %}
   {%- set python3_version="python3.8" %}
+{%- elif grains['oscodename'] == "jammy" %}
+  {%- set python3_version="python3.10" %}
 {% endif %}
 {%- set user = salt['pillar.get']('remnux_user', 'remnux') -%}
 

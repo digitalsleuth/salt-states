@@ -6,6 +6,8 @@
 # License: Apache License 2.0: https://github.com/pxb1988/dex2jar/blob/2.x/LICENSE.txt
 # Notes: dex-tools
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
   
@@ -14,3 +16,10 @@ dex2jar:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+dex2jar-not-in-jammy:
+  test.nop
+
+{% endif %}

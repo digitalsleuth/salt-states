@@ -6,7 +6,14 @@
 # License: MIT License: https://github.com/horsicq/Detect-It-Easy/blob/master/LICENSE
 # Notes: GUI tool: `die`, command-line tool: `diec`.
 
+{% set version = '3.06' %}
 {%- if grains['oscodename'] == "focal" %}
+  {% set os_rel = '20.04' %}
+  {% set hash = '76fe06a3cd9f45ec9068c6973b1a93cacc71ca36dd6dd3c505987c2dcf7dcc76' %}
+{% elif grains['oscodename'] == "jammy" %}
+  {% set os_rel = '22.04' %}
+  {% set hash = '9b5b5d6b11b3127fcab01efaa54966a65e71a683858ce909667842ded9222b3c' %}
+{% endif %}
 
 include:
   - remnux.packages.libglib2
@@ -15,9 +22,9 @@ include:
 
 remnux-tools-detect-it-easy-source:
   file.managed:
-    - name: /usr/local/src/remnux/files/die_3.05_Ubuntu_20.04_amd64.deb
-    - source: https://github.com/horsicq/DIE-engine/releases/download/3.05/die_3.05_Ubuntu_20.04_amd64.deb
-    - source_hash: sha256=0670fbf681e87510cdccc520d0aa4befcdfe666bb82d329f2b264f7c9a7da0d4
+    - name: /usr/local/src/remnux/files/die_{{ version }}_Ubuntu_{{ os_rel }}_amd64.deb
+    - source: https://github.com/horsicq/DIE-engine/releases/download/{{ version }}/die_{{ version }}_Ubuntu_{{ os_rel }}_amd64.deb
+    - source_hash: sha256={{ hash }}
     - makedirs: true
 
 remnux-tools-detect-it-easy-cleanup1:
@@ -35,16 +42,9 @@ remnux-tools-detect-it-easy-cleanup2:
 remnux-tools-detect-it-easy-install:
   pkg.installed:
     - sources:
-      - detectiteasy: /usr/local/src/remnux/files/die_3.05_Ubuntu_20.04_amd64.deb
+      - detectiteasy: /usr/local/src/remnux/files/die_{{ version }}_Ubuntu_{{ os_rel }}_amd64.deb
     - require:
       - file: remnux-tools-detect-it-easy-cleanup2
       - sls: remnux.packages.libglib2
       - sls: remnux.packages.qt5-default
       - sls: remnux.packages.libqt5scripttools5
-
-{%- elif grains['oscodename'] == "bionic" %}
-
-remnux-tools-detect-it-easy-source:
-  test.nop
-
-{%- endif %}

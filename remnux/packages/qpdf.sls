@@ -6,8 +6,17 @@
 # License: Apache License 2.0: https://github.com/qpdf/qpdf/blob/master/LICENSE.txt
 # Notes: 
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
 
 qpdf:
   pkg.installed
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+qpdf-not-in-jammy:
+  test.nop
+
+{% endif %}

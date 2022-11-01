@@ -6,6 +6,8 @@
 # License: GNU General Public License (GPL) v3.0: https://github.com/outflanknl/EvilClippy/blob/master/LICENSE.md
 # Notes: To remove VBA project password protection from the file, use the `evilclippy -uu` command.
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
   - remnux.packages.mono-devel
@@ -18,3 +20,10 @@ remnux-packages-evilclippy:
     - pkgrepo: remnux
     - require:
       - sls: remnux.packages.mono-devel
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+evilclippy-not-in-jammy:
+  test.nop
+
+{% endif %}

@@ -7,8 +7,8 @@
 # Notes: mraptor, msodde, olebrowse, oledir, oleid, olemap, olemeta, oleobj, oletimes, olevba, pyxswf, rtfobj, ezhexviewer
 {% if grains['oscodename'] == "focal" %}
   {% set python = "python3.8" %}
-{% elif grains['oscodename'] == "bionic" %}
-  {% set python = "python3.6" %}
+{% elif grains['oscodename'] == "jammy" %}
+  {% set python = "python3.10" %}
 {% endif %}
 
 include:

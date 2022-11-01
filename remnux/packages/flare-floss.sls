@@ -6,6 +6,8 @@
 # License: Apache License 2.0: https://github.com/fireeye/flare-floss/blob/master/LICENSE.txt
 # Notes: floss
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
 
@@ -15,3 +17,10 @@ remnux-packages-flare-floss:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+flare-floss-not-in-jammy:
+  test.nop
+
+{% endif %}

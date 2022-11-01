@@ -6,6 +6,8 @@
 # License: GNU Lesser General Public License (LGPL)
 # Notes: 7-Zip standard: 7z, 7za, 7zr. For latest alpha verison, use 7zz instead of 7z.
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
 
@@ -19,3 +21,10 @@ remnux-packages-7zz:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+7zip:
+  pkg.installed
+
+{% endif %}

@@ -6,6 +6,8 @@
 # License: MIT License: https://github.com/icsharpcode/ILSpy/blob/master/doc/ILSpyAboutPage.txt
 # Notes: This is the command-line version of ILSpy, which you can run using the `ilspycmd` command.
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
   - remnux.repos.microsoft
@@ -15,3 +17,10 @@ ilspycmd:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+ilspycmd-not-in-jammy:
+  test.nop
+
+{% endif %}

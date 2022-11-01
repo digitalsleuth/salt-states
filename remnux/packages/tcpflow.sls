@@ -6,8 +6,17 @@
 # License: GNU General Public License (GPL) v3: https://github.com/simsong/tcpflow/blob/master/COPYING
 # Notes: 
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
 
 tcpflow:
   pkg.installed
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+tcpflow-not-in-jammy:
+  test.nop
+
+{% endif %}

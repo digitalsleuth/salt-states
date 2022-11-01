@@ -6,8 +6,17 @@
 # License: Free, unknown license
 # Notes:
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
 
 xorstrings:
   pkg.installed
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+xorstrings-not-in-jammy:
+  test.nop
+
+{% endif %}

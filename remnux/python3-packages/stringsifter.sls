@@ -6,6 +6,8 @@
 # License: Apache License 2.0: https://github.com/fireeye/stringsifter/blob/master/LICENSE
 # Notes: flarestrings
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.python3-packages.pip
 
@@ -16,3 +18,10 @@ remnux-python3-packages-stringsifter:
     - upgrade: True
     - require:
       - sls: remnux.python3-packages.pip
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+stringsifter-not-supported-in-jammy:
+  test.nop
+
+{% endif %}

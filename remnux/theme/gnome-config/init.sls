@@ -17,6 +17,7 @@ include:
   - remnux.tools.networkminer
   - remnux.theme.gnome-config.remove-app-icons
   - remnux.tools.detect-it-easy
+  - remnux.packages.dbus-x11
 
 remnux-gnome-config-logo:
   file.managed:
@@ -123,6 +124,7 @@ remnux-gnome-config-terminal-profiles-install:
     - shell: /bin/bash
     - require:
       - user: remnux-user-{{ user }}
+      - sls: remnux.packages.dbus-x11
     - watch:
       - file: remnux-gnome-config-terminal-profiles-file
 
@@ -202,8 +204,6 @@ remnux-theme-gnome-config:
     - require:
       - sls: remnux.theme.gnome-config.remove-app-icons
 
-{%- if grains['oscodename'] == "focal" %}
-
 remnux-gnome-config-detect-it-easy-icon-file:
   file.managed:
     - replace: False
@@ -221,10 +221,3 @@ remnux-gnome-config-detect-it-easy-icon:
     - makedirs: True
     - watch:
       - file: remnux-gnome-config-detect-it-easy-icon-file
-
-{%- elif grains['oscodename'] == "bionic" %}
-
-remnux-gnome-config-detect-it-easy-icon:
-  test.nop
-
-{%- endif %}

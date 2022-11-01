@@ -6,6 +6,8 @@
 # License: MIT License: https://github.com/sandflysecurity/sandfly-processdecloak/blob/master/LICENSE
 # Notes: 
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
   
@@ -14,3 +16,10 @@ sandfly-processdecloak:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+sandfly-processdecloak-not-in-jammy:
+  test.nop
+
+{% endif %}

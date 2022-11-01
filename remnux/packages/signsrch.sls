@@ -6,8 +6,17 @@
 # License: Free, unknown license
 # Notes: 
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
 
 signsrch:
   pkg.installed
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+signsrch-not-in-jammy:
+  test.nop
+
+{% endif %}

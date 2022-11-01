@@ -11,10 +11,12 @@ include:
   - remnux.packages.bundler
   - remnux.packages.clamav-daemon
   - remnux.packages.curl
+  - remnux.packages.dbus-x11
   - remnux.packages.default-jre
   - remnux.packages.docker
   - remnux.packages.dos2unix
   - remnux.packages.epic5
+  - remnux.packages.ewf-tools
   - remnux.packages.exfat-utils
   - remnux.packages.feh
   - remnux.packages.firefox
@@ -36,6 +38,9 @@ include:
   - remnux.packages.libboost-system-dev
   - remnux.packages.libemail-outlook-message-perl
   - remnux.packages.libemu
+  - remnux.packages.libewf-dev
+  - remnux.packages.libewf2
+  - remnux.packages.libexpat1-dev
   - remnux.packages.libffi-dev
   - remnux.packages.libfuzzy-dev
   - remnux.packages.libjpeg-dev
@@ -49,6 +54,7 @@ include:
   - remnux.packages.libxslt1-dev
   - remnux.packages.linux-headers
   - remnux.packages.ltrace
+  - remnux.packages.make
   - remnux.packages.mercurial
   - remnux.packages.nginx
   - remnux.packages.ngrep
@@ -58,13 +64,10 @@ include:
   - remnux.packages.pdfresurrect
   - remnux.packages.pkg-config
   - remnux.packages.python-crypto
-  - remnux.packages.python-dnspython
+#  - remnux.packages.python-dnspython  Not in jammy, newer version is pip package 
   - remnux.packages.enchant
   - remnux.packages.python-magic
-  - remnux.packages.python-numpy
-  - remnux.packages.python-pil
   - remnux.packages.python2-pip
-  - remnux.packages.python-pyasn1
   - remnux.packages.software-properties-common
   - remnux.packages.python2
   - remnux.packages.python3
@@ -175,12 +178,14 @@ remnux-packages:
       - sls: remnux.packages.bundler
       - sls: remnux.packages.clamav-daemon
       - sls: remnux.packages.curl
+      - sls: remnux.packages.dbus-x11
       - sls: remnux.packages.snapd
       - sls: remnux.packages.snap  
       - sls: remnux.packages.default-jre
       - sls: remnux.packages.docker
       - sls: remnux.packages.dos2unix
       - sls: remnux.packages.epic5
+      - sls: remnux.packages.ewf-tools
       - sls: remnux.packages.exfat-utils
       - sls: remnux.packages.feh
       - sls: remnux.packages.firefox
@@ -200,6 +205,9 @@ remnux-packages:
       - sls: remnux.packages.libboost-system-dev
       - sls: remnux.packages.libemail-outlook-message-perl
       - sls: remnux.packages.libemu
+      - sls: remnux.packages.libewf-dev
+      - sls: remnux.packages.libewf2
+      - sls: remnux.packages.libexpat1-dev
       - sls: remnux.packages.libffi-dev
       - sls: remnux.packages.libfuzzy-dev
       - sls: remnux.packages.libjpeg-dev
@@ -212,6 +220,7 @@ remnux-packages:
       - sls: remnux.packages.libxslt1-dev
       - sls: remnux.packages.linux-headers
       - sls: remnux.packages.ltrace
+      - sls: remnux.packages.make
       - sls: remnux.packages.mercurial
       - sls: remnux.packages.nginx
       - sls: remnux.packages.ngrep
@@ -221,13 +230,10 @@ remnux-packages:
       - sls: remnux.packages.pdfresurrect
       - sls: remnux.packages.pkg-config
       - sls: remnux.packages.python-crypto
-      - sls: remnux.packages.python-dnspython
+#      - sls: remnux.packages.python-dnspython  Not in jammy, newer version is pip package
       - sls: remnux.packages.enchant
       - sls: remnux.packages.python-magic
-      - sls: remnux.packages.python-numpy
-      - sls: remnux.packages.python-pil
       - sls: remnux.packages.python2-pip
-      - sls: remnux.packages.python-pyasn1
       - sls: remnux.packages.software-properties-common
       - sls: remnux.packages.python2
       - sls: remnux.packages.python3

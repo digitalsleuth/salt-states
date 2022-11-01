@@ -6,6 +6,8 @@
 # License: Apache License 2.0: https://github.com/bitdefender/bddisasm/blob/master/LICENSE
 # Notes: disasmtool
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
   
@@ -14,3 +16,10 @@ bddisasm:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+bddisasm-not-in-jammy:
+  test.nop
+
+{% endif %}

@@ -6,6 +6,8 @@
 # License: Public Domain
 # Notes: xorsearch
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
   
@@ -14,3 +16,10 @@ xorsearch:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+xorsearch-not-in-jammy:
+  test.nop
+
+{% endif %}

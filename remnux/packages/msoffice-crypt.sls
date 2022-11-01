@@ -6,9 +6,18 @@
 # License: Free, custom license: https://github.com/herumi/msoffice/blob/master/COPYRIGHT
 # Notes: 
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
 
 msoffice-crypt:
   pkg.installed:
     - pkgrepo: remnux
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+msoffice-crypt-not-in-jammy:
+  test.nop
+
+{% endif %}

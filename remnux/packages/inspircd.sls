@@ -6,37 +6,38 @@
 # License: GNU General Public License (GPL) v2: https://docs.inspircd.org/license/
 # Notes: 
 
-{%- if grains['oscodename'] == "bionic" %}
-
-remnux-packages-inspircd-source:
-  file.managed:
-    - name: /usr/local/src/inspircd_3.8.1.ubuntu18.04.1_amd64.deb
-    - source: https://github.com/inspircd/inspircd/releases/download/v3.8.1/inspircd_3.8.1.ubuntu18.04.1_amd64.deb
-    - source_hash: sha256=d993a9333395826d1312c940ef72e53c5d67217f481c08c2b00709352bdcae8f
-
-remnux-packages-inspircd-install:
-  pkg.installed:
-    - sources:
-      - inspircd: /usr/local/src/inspircd_3.8.1.ubuntu18.04.1_amd64.deb
-    - watch:
-      - file: remnux-packages-inspircd-source
-
-{%- elif grains['oscodename'] == "focal" %}
-
-remnux-packages-inspircd-source:
-  file.managed:
-    - name: /usr/local/src/inspircd_3.8.1.ubuntu20.04.1_amd64.deb
-    - source: https://github.com/inspircd/inspircd/releases/download/v3.8.1/inspircd_3.8.1.ubuntu20.04.1_amd64.deb
-    - source_hash: sha256=62cdd3dc915135ef4331b384217475ed0a4421198a02398efe1e016877c8c8dd
-
-remnux-packages-inspircd-install:
-  pkg.installed:
-    - sources:
-      - inspircd: /usr/local/src/inspircd_3.8.1.ubuntu20.04.1_amd64.deb
-    - watch:
-      - file: remnux-packages-inspircd-source
-
+{% set version = '3.14.0' %}
+{%- if grains['oscodename'] == "focal" %}
+  {% set os_rel = '20.04.1' %}
+  {% set hash = '4ffd60405f25326867f2a4c38dcbba4aa38fe2045808bfc19b80fbe2920aa967' %}
+{% elif grains['oscodename'] == "jammy" %}
+  {% set os_rel = '22.04.1' %}
+  {% set hash = '532fe6f88d0ef3c9412caf98352d9a8277b1525530d814e349b689c3c6de7441' %}
 {% endif %}
+
+include:
+  - remnux.packages.libpq5
+  - remnux.packages.libre2-9
+  - remnux.packages.libtre5
+  - remnux.packages.gnutls-bin
+
+remnux-packages-inspircd-source:
+  file.managed:
+    - name: /usr/local/src/inspircd_{{ version }}.ubuntu{{ os_rel }}_amd64.deb
+    - source: https://github.com/inspircd/inspircd/releases/download/v{{ version }}/inspircd_{{ version }}.ubuntu{{ os_rel }}_amd64.deb
+    - source_hash: sha256={{ hash }}
+
+remnux-packages-inspircd-install:
+  pkg.installed:
+    - sources:
+      - inspircd: /usr/local/src/inspircd_{{ version }}.ubuntu{{ os_rel }}_amd64.deb
+    - require:
+      - sls: remnux.packages.libpq5
+      - sls: remnux.packages.libre2-9
+      - sls: remnux.packages.libtre5
+      - sls: remnux.packages.gnutls-bin
+    - watch:
+      - file: remnux-packages-inspircd-source
 
 # Runlevel isn't in a Docker container, so check whether it exists before
 # trying to control services

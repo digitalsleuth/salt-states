@@ -5,10 +5,10 @@
 # Author: Alexandre Borges
 # License: GNU General Public License v3: https://github.com/alexandreborges/malwoverview/blob/master/LICENSE
 # Notes: malwoverview.py, add API keys to ~/.malwapi.conf
-{%- if grains['oscodename'] == "bionic" %}
-  {%- set python3_version="python3.6" %}
-{%- else %}
+{%- if grains['oscodename'] == "focal" %}
   {%- set python3_version="python3.8" %}
+{%- else %}
+  {%- set python3_version="python3.10" %}
 {% endif %}
 {%- set user = salt['pillar.get']('remnux_user', 'remnux') -%}       
 

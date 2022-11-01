@@ -6,6 +6,8 @@
 # License: Free, custom license: https://portswigger.net/burp/tc-community
 # Notes: burpsuite
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
 
@@ -15,3 +17,10 @@ remnux-packages-burpsuite-community:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+burpsuite-community-not-in-jammy:
+  test.nop
+
+{% endif %}

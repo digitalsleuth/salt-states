@@ -7,12 +7,12 @@
 # Notes: 
 
 include:
-  - remnux.packages.pgadmin3
+  - remnux.packages.pgadmin4
 
 postgresql:
   pkg.installed:
     - require:
-      - sls: remnux.packages.pgadmin3
+      - sls: remnux.packages.pgadmin4
 
 # Runlevel isn't in a Docker container, so check whether it exists before
 # trying to control  services

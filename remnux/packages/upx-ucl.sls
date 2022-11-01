@@ -6,9 +6,18 @@
 # License: GNU General Public License (GPL): https://github.com/upx/upx/blob/master/LICENSE
 # Notes: upx
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.repos.remnux
   
 upx-ucl:
   pkg.installed:
     - pkgrepo: remnux
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+upx-ucl-not-in-jammy:
+  test.nop
+
+{% endif %}

@@ -6,8 +6,17 @@
 # License: GNU General Public License (GPL) v3: https://github.com/zrax/pycdc/blob/master/LICENSE
 # Notes: pycdas, pycdc
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
 
 pycdc:
   pkg.installed
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+pycdc-not-in-jammy:
+  test.nop
+
+{% endif %}

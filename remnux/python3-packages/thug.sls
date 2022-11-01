@@ -6,6 +6,8 @@
 # License: GNU General Public License (GPL) v2: https://github.com/buffer/thug/blob/master/LICENSE.txt
 # Notes: thug -F
 
+{% if grains['oscodename'] == 'focal' %}
+
 include:
   - remnux.packages.git
   - remnux.python3-packages.pip
@@ -87,3 +89,10 @@ remnux-copy-files-thug:
         - source: /usr/local/src/thug/conf/thug.conf
     - watch:
       - cmd: remnux-copy-personalities-thug
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+libemu-not-in-jammy-so-no-thug:
+  test.nop
+
+{% endif %}

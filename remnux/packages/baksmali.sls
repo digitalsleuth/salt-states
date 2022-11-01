@@ -6,6 +6,8 @@
 # License: Free, unknown license
 # Notes: 
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
 
@@ -14,3 +16,10 @@ baksmali:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+baksmali-not-in-jammy:
+  test.nop
+
+{% endif %}

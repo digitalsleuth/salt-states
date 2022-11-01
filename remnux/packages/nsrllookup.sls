@@ -6,6 +6,8 @@
 # License: ISC License: https://github.com/rjhansen/nsrllookup/blob/master/LICENSE
 # Notes:
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
   
@@ -14,3 +16,10 @@ nsrllookup:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+nsrllookup-not-in-jammy:
+  test.nop
+
+{% endif %}

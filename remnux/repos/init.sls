@@ -4,15 +4,15 @@ include:
   - remnux.repos.draios
   - remnux.repos.inetsim
   - remnux.repos.openjdk
-  - remnux.repos.gift
-  - remnux.repos.sift
+#  - remnux.repos.sift
   - remnux.repos.mono
-  - remnux.repos.remnux
+#  - remnux.repos.remnux
   - remnux.repos.wireshark-dev
   - remnux.repos.microsoft
   - remnux.repos.microsoft-vscode
   - remnux.repos.nodejs
   - remnux.repos.gift
+  - remnux.repos.pgadmin4
 
 remnux-repos:
   test.nop:
@@ -22,12 +22,12 @@ remnux-repos:
       - sls: remnux.repos.draios
       - sls: remnux.repos.inetsim
       - sls: remnux.repos.openjdk
-      - sls: remnux.repos.gift
-      - sls: remnux.repos.sift
+#      - sls: remnux.repos.sift
       - sls: remnux.repos.mono
-      - sls: remnux.repos.remnux
+#      - sls: remnux.repos.remnux
       - sls: remnux.repos.wireshark-dev
       - sls: remnux.repos.microsoft
       - sls: remnux.repos.microsoft-vscode
       - sls: remnux.repos.nodejs
       - sls: remnux.repos.gift
+      - sls: remnux.repos.pgadmin4

@@ -6,6 +6,8 @@
 # License: Public Domain
 # Notes: oledump.py
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.python3-packages.yara-python3
   - remnux.python3-packages.olefile
@@ -22,3 +24,10 @@ remnux-packages-oledump:
       - sls: remnux.python3-packages.yara-python3
       - sls: remnux.python3-packages.olefile
       - sls: remnux.python3-packages.pyzipper
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+oledump-not-in-jammy:
+  test.nop
+
+{% endif %}

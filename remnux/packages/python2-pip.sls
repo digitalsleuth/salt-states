@@ -2,14 +2,6 @@ include:
   - remnux.packages.python2
   - remnux.packages.curl
 
-{%- if grains['oscodename'] == "bionic" %}
-remnux-packages-python2-pip:
-  pkg.installed:
-    - name: python-pip
-    - require:
-      - sls: remnux.packages.python2
-
-{%- elif grains['oscodename'] == "focal" %}
 remnux-packages-python2-pip-install-script:
   cmd.run:
     - name: curl -o /tmp/get-pip.py https://bootstrap.pypa.io/pip/2.7/get-pip.py
@@ -24,4 +16,3 @@ remnux-packages-python2-pip-install:
     - unless: which pip2
     - require:
       - cmd: remnux-packages-python2-pip-install-script
-{%- endif %}

@@ -6,6 +6,8 @@
 # License: Apache License 2.0: https://github.com/katjahahn/PortEx/blob/master/LICENSE
 # Notes: portex
 
+{%- if grains['oscodename'] == "focal" %}
+
 include:
   - remnux.repos.remnux
 
@@ -14,3 +16,10 @@ portex:
     - version: latest
     - upgrade: True
     - pkgrepo: remnux
+
+{%- elif grains['oscodename'] == "jammy" %}
+
+portex-not-in-jammy:
+  test.nop
+
+{% endif %}

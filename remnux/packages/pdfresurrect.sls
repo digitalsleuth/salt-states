@@ -6,8 +6,16 @@
 # License: GNU General Public License (GPL) v3: https://github.com/enferex/pdfresurrect/blob/master/LICENSE
 # Notes: 
 
+{% if grains['oscodename'] == 'focal' %}
 include:
   - remnux.repos.remnux
 
 pdfresurrect:
   pkg.installed
+
+{% elif grains['oscodename'] == 'jammy' %}
+
+pdfresurrect-not-in-jammy:
+  test.nop
+
+{% endif %}

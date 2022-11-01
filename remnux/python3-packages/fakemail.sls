@@ -6,8 +6,6 @@
 # License: Apache License 2.0: https://hg.sr.ht/~olly/fakemail/browse/LICENSE.txt?rev=default
 # Notes: 
 
-{%- if grains['oscodename'] == "focal" %}
-
 include:
   - remnux.python3-packages.pip
 
@@ -18,10 +16,3 @@ remnux-python3-packages-fakemail:
     - upgrade: True
     - require:
       - sls: remnux.python3-packages.pip
-
-{%- elif grains['oscodename'] == "bionic" %}
-
-remnux-python3-packages-fakemail:
-  test.nop
-
-{%- endif %}
