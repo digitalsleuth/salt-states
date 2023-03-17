@@ -17,7 +17,7 @@ upx-ucl:
 
 {% elif grains['oscodename'] == 'jammy' %}
 
-upx-ucl-not-in-jammy:
-  test.nop
+upx-ucl:
+  pkg.installed
 
 {% endif %}

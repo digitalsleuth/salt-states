@@ -6,11 +6,11 @@
 # License: GNU General Public License (GPL) v2: https://github.com/eteran/edb-debugger/blob/master/COPYING
 # Notes: 
 
-{% if grains['oscodename'] == 'focal' %}
 
 include:
-  - remnux.repos.remnux
   - remnux.packages.xterm
+{% if grains['oscodename'] == 'focal' %}
+  - remnux.repos.remnux
   
 edb-debugger:
   pkg.installed:
@@ -22,7 +22,11 @@ edb-debugger:
 
 {% elif grains['oscodename'] == 'jammy' %}
 
-edb-debugger-not-in-jammy:
-  test.nop
+edb-debugger:
+  pkg.installed:
+    - version: latest
+    - upgrade: True
+    - require:
+      - sls: remnux.packages.xterm
 
 {% endif %}

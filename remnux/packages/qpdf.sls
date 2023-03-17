@@ -16,7 +16,7 @@ qpdf:
 
 {% elif grains['oscodename'] == 'jammy' %}
 
-qpdf-not-in-jammy:
-  test.nop
+qpdf:
+  pkg.installed
 
 {% endif %}

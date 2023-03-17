@@ -20,7 +20,10 @@ remnux-packages-pev:
 
 {% elif grains['oscodename'] == 'jammy' %}
 
-pev-not-in-jammy:
-  test.nop
+remnux-packages-pev:
+  pkg.installed:
+    - name: pev
+    - version: latest
+    - upgrade: True
 
 {% endif %}

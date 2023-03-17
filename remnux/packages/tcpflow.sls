@@ -16,7 +16,7 @@ tcpflow:
 
 {% elif grains['oscodename'] == 'jammy' %}
 
-tcpflow-not-in-jammy:
-  test.nop
+tcpflow:
+  pkg.installed
 
 {% endif %}

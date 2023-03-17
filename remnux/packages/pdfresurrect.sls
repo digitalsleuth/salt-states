@@ -10,12 +10,7 @@
 include:
   - remnux.repos.remnux
 
+{% endif %}
+
 pdfresurrect:
   pkg.installed
-
-{% elif grains['oscodename'] == 'jammy' %}
-
-pdfresurrect-not-in-jammy:
-  test.nop
-
-{% endif %}
